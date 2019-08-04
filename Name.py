@@ -8,13 +8,17 @@ class Name:
     def __init__(self):
 
         self.out = ''
+        # builds dict with values (single char (c/v),
+        # consonant - vowel combination and c-v-c combination )
         self.s = self.genStr()
+        self.cvcMatrix = []
 
     def __str__(self):
         return str(self.out)
 
     def ranStr(self):
 
+        # makes random choice of string combination (one, two oder three) 
         cur = random.choice([x for x in self.s.keys()])
         s = self.s[cur]
         return random.choice(s)
@@ -41,7 +45,8 @@ class Name:
                     cvc.append(''.join([c, v, cc]))
             values.append(cv_vc)
             values.append(cvc)
-        # matrix = [[i for i in chunks[j:j + 20]] for j in range(0, 2399, 20)]
+        self.cvcMatrix = [[i for i in cvc[j:j + 17]] for j in range(0, 1734, 17)]
+        # print(len(filterd), len(vowels))
 
         for i in range(3):
             self.s[i + 1] = values[i]
@@ -51,12 +56,13 @@ class Name:
 def main():
 
     n = Name()
-    n.genStr()
-    for pos,i in enumerate(n.s[1]):
-        try:
-            print(i, n.s[1][pos +1 ])
-        except IndexError as e:
-            pass
+    # n.genStr()
+
+    # for pos,i in enumerate(n.s[1]):
+    #     try:
+    #         print(i, n.s[1][pos + 1])
+    #     except IndexError as e:
+    #         pass
     
 
 # main()

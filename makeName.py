@@ -17,46 +17,17 @@ class NameFactory:
 
 		return self.n
 
-	def makeNewName(self):
+	def populateNameObj(self, length):
 
 		# random.seed(self.seed)
 		nn = ''
-		length = random.choice(range(3, 6))
 		while len(nn) < length:
 			txt = self.n.ranStr()
 			nn += txt
-			self.seed += 1
-		self.n.out = nn
+			self.seed += 1 # for reproducibility
+		self.n.out = nn # store name in Name() obj
 		return self.n
 		
-
-
-def main():
-
-	vovels = 'aeiou'
-	consonants = "bcdfghjklmnpqrstvwxzjy"
-	nf = NameFactory()
-	for i in range(10):
-		x = True
-		while x:
-			count = 0
-			nf.getNameObj()
-			new = nf.makeNewName()
-			for pos,c in enumerate(str(new)):
-				if c in vovels:
-					count += 1
-			try:
-				if c and str(new)[pos + 1] in consonants:
-						count -= 3
-			except IndexError as e:
-				pass
-
-			if count >= 3:
-				x = False
-
-		print(capwords(str(new)))
-
-main()
 
 
 
